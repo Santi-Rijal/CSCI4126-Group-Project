@@ -5,30 +5,32 @@ using UnityEngine;
 
 public class NavBar : MonoBehaviour {
 
-    [SerializeField] private Canvas[] canvasArray;
+    [SerializeField] private GameObject[] canvasArray;
 
-    private Canvas _activeCanvas;
+    private GameObject _activeCanvas;
 
     private void Awake() {
-        _activeCanvas = canvasArray[0];
-        if (!_activeCanvas.gameObject.activeSelf) _activeCanvas.gameObject.SetActive(true);
+        _activeCanvas = canvasArray[1];
+        if (!_activeCanvas.activeSelf) _activeCanvas.SetActive(true);
     }
 
     public void HomeClicked() {
         //_activeCanvas.gameObject.SetActive(false);
         _activeCanvas = canvasArray[0];
-        _activeCanvas.gameObject.SetActive(true);
+        _activeCanvas.SetActive(true);
     }
     
     public void BookClicked() {
-        //_activeCanvas.gameObject.SetActive(false);
+        _activeCanvas.SetActive(false);
         _activeCanvas = canvasArray[1];
-        _activeCanvas.gameObject.SetActive(true);
+        print(_activeCanvas.name);
+        _activeCanvas.SetActive(true);
+        print(_activeCanvas.activeSelf);
     }
     
     public void AccountClicked() {
         //_activeCanvas.gameObject.SetActive(false);
         _activeCanvas = canvasArray[2];
-        _activeCanvas.gameObject.SetActive(true);
+        _activeCanvas.SetActive(true);
     }
 }
