@@ -11,5 +11,24 @@ public class NavBar : MonoBehaviour {
 
     private void Awake() {
         _activeCanvas = canvasArray[0];
+        if (!_activeCanvas.gameObject.activeSelf) _activeCanvas.gameObject.SetActive(true);
+    }
+
+    public void HomeClicked() {
+        //_activeCanvas.gameObject.SetActive(false);
+        _activeCanvas = canvasArray[0];
+        _activeCanvas.gameObject.SetActive(true);
+    }
+    
+    public void BookClicked() {
+        //_activeCanvas.gameObject.SetActive(false);
+        _activeCanvas = canvasArray[1];
+        _activeCanvas.gameObject.SetActive(true);
+    }
+    
+    public void AccountClicked() {
+        //_activeCanvas.gameObject.SetActive(false);
+        _activeCanvas = canvasArray[2];
+        _activeCanvas.gameObject.SetActive(true);
     }
 }
