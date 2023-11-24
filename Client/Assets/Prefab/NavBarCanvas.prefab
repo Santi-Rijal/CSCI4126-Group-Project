@@ -334,7 +334,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5548877501262938367}
         m_TargetAssemblyTypeName: NavBar, Assembly-CSharp
-        m_MethodName: AccountClicked
+        m_MethodName: BookClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasArray:
-  - {fileID: 5776088649789743006, guid: be070d8b9e60b4401a1c70b9983ca369, type: 3}
-  - {fileID: 2586667993567107795, guid: c71b07532b1d043b7a49a73c0b642908, type: 3}
-  - {fileID: 7170720765985675995, guid: 52d9acc4569e54010bc26b88346f1a17, type: 3}
+  - {fileID: 2397004762015640825, guid: be070d8b9e60b4401a1c70b9983ca369, type: 3}
+  - {fileID: 3591996459363054654, guid: c71b07532b1d043b7a49a73c0b642908, type: 3}
+  - {fileID: 5067845867129845117, guid: 52d9acc4569e54010bc26b88346f1a17, type: 3}
 --- !u!1 &4833281132080003517
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5548877501262938367}
         m_TargetAssemblyTypeName: NavBar, Assembly-CSharp
-        m_MethodName: BookClicked
+        m_MethodName: AccountClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

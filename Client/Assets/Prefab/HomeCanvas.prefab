@@ -403,7 +403,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2767526130061522020}
-  - {fileID: 4328304520167147204}
+  - {fileID: 2295696610519851532}
   m_Father: {fileID: 439432276239072470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -697,7 +697,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &2522273948434530389
+--- !u!1001 &56896611962643613
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -755,15 +755,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2238800071870006929, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2238800071870006929, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2238800071870006929, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2238800071870006929, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -789,13 +789,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavBarCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5548877501262938367, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
+      propertyPath: canvasArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 2397004762015640825}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
---- !u!224 &4328304520167147204 stripped
+--- !u!224 &2295696610519851532 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2238800071870006929, guid: b96823ab97d7b4d3b84edea4dbd15f6e, type: 3}
-  m_PrefabInstance: {fileID: 2522273948434530389}
+  m_PrefabInstance: {fileID: 56896611962643613}
   m_PrefabAsset: {fileID: 0}
