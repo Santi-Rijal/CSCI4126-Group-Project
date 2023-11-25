@@ -8,8 +8,17 @@ using UnityEngine.UI;
 public class Calendar : MonoBehaviour {
 
     [SerializeField] private Dates currentlySelected;
+    [SerializeField] private TextMeshProUGUI monthText;
 
     private void Awake() {
+        var currentDate = DateTime.Now;
+        var month = currentDate.ToString("MMMM");
+        var day = currentDate.ToString("dd");
+
+        currentlySelected = GameObject.Find(day).GetComponent<Dates>();
+
+        monthText.text = month;
+        
         currentlySelected.Select();
     }
 
