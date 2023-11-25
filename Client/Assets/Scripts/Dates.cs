@@ -20,7 +20,6 @@ public class Dates : MonoBehaviour {
    }
 
    public void OnClick() {
-      print("mouse down");
       var calender = GetComponentInParent<Calendar>();
       calender.ChangeDate(this);
    }

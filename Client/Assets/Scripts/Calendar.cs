@@ -10,11 +10,7 @@ public class Calendar : MonoBehaviour {
     [SerializeField] private Dates currentlySelected;
 
     private void Awake() {
-        var image = currentlySelected.gameObject.GetComponent<Image>();
-        image.color = new Color32(38, 106, 74, 255);
-
-        var text = currentlySelected.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        text.color = Color.white;
+        currentlySelected.Select();
     }
 
     public void ChangeDate(Dates date) {
@@ -22,7 +18,6 @@ public class Calendar : MonoBehaviour {
             currentlySelected.ReturnToDefault();
         }
         
-        print("change date");
         currentlySelected = date;
         currentlySelected.Select();
     }

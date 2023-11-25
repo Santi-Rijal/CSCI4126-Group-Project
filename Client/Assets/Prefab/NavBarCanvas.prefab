@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 8285490001347374000}
   - component: {fileID: 1978975202748366051}
   - component: {fileID: 1622319697831746464}
+  - component: {fileID: 2452597387863146132}
   m_Layer: 5
   m_Name: Home
   m_TagString: Untagged
@@ -199,9 +200,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5548877501262938367}
-        m_TargetAssemblyTypeName: NavBar, Assembly-CSharp
-        m_MethodName: HomeClicked
+      - m_Target: {fileID: 2452597387863146132}
+        m_TargetAssemblyTypeName: NavButtons, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -211,6 +212,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2452597387863146132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2583967604907076068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692a1bc9873d24fc0bc734a43c20e82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3721725330878974222
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +236,7 @@ GameObject:
   - component: {fileID: 8290734052583635175}
   - component: {fileID: 5685273228839136705}
   - component: {fileID: 3468443090427484222}
+  - component: {fileID: 6032861174942976382}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -332,9 +346,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5548877501262938367}
-        m_TargetAssemblyTypeName: NavBar, Assembly-CSharp
-        m_MethodName: BookClicked
+      - m_Target: {fileID: 6032861174942976382}
+        m_TargetAssemblyTypeName: NavButtons, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -344,6 +358,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6032861174942976382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721725330878974222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692a1bc9873d24fc0bc734a43c20e82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4626056439440165383
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,10 +405,10 @@ RectTransform:
   - {fileID: 7279716971766331799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 340, y: 64}
+  m_SizeDelta: {x: -1580, y: -1016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7380151859990954683
 Canvas:
@@ -459,10 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccd646ebfda74472a5b13301dc3b6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasArray:
-  - {fileID: 2397004762015640825, guid: be070d8b9e60b4401a1c70b9983ca369, type: 3}
-  - {fileID: 3591996459363054654, guid: c71b07532b1d043b7a49a73c0b642908, type: 3}
-  - {fileID: 5067845867129845117, guid: 52d9acc4569e54010bc26b88346f1a17, type: 3}
+  currentlySelected: {fileID: 2452597387863146132}
 --- !u!1 &4833281132080003517
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +498,7 @@ GameObject:
   - component: {fileID: 8629033737810253603}
   - component: {fileID: 8368706809170570579}
   - component: {fileID: 1897940827703408838}
+  - component: {fileID: 8104709450045560479}
   m_Layer: 5
   m_Name: Account
   m_TagString: Untagged
@@ -584,9 +608,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5548877501262938367}
-        m_TargetAssemblyTypeName: NavBar, Assembly-CSharp
-        m_MethodName: AccountClicked
+      - m_Target: {fileID: 8104709450045560479}
+        m_TargetAssemblyTypeName: NavButtons, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -596,6 +620,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8104709450045560479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833281132080003517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692a1bc9873d24fc0bc734a43c20e82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5125232580189374048
 GameObject:
   m_ObjectHideFlags: 0
