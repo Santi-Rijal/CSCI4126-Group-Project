@@ -77,17 +77,19 @@ public class WeatherAPIScript : MonoBehaviour
 
     void TriggerWeatherAnimation(string weatherDescription)
     {
+        Debug.Log("Weather Description: " + weatherDescription);
+
         // Deactivate all animations first
         DeactivateAllAnimations();
 
         // Determine which animation to play
         if (weatherDescription.Contains("Hail") || weatherDescription.Contains("Sleet"))
             weatherAnimations["Hail"].SetActive(true);
-        else if (weatherDescription.Contains("Rain") || weatherDescription.Contains("Drizzle") || weatherDescription.Contains("Light Rain") || weatherDescription.Contains("Heavy Rain") || weatherDescription.Contains("Fog") || weatherDescription.Contains("Mist"))
+        else if (weatherDescription.Contains("Rain") || weatherDescription.Contains("Drizzle") || weatherDescription.Contains("Light rain") || weatherDescription.Contains("Heavy rain") || weatherDescription.Contains("Fog") || weatherDescription.Contains("Mist"))
             weatherAnimations["Rain"].SetActive(true);
-        else if (weatherDescription.Contains("Snow") || weatherDescription.Contains("Light Snow") || weatherDescription.Contains("Heavy Snow"))
+        else if (weatherDescription.Contains("Snow") || weatherDescription.Contains("Light snow") || weatherDescription.Contains("Heavy snow"))
             weatherAnimations["Snow"].SetActive(true);
-        else if (weatherDescription.Contains("Sunny") || weatherDescription.Contains("Clear") || weatherDescription.Contains("Partly Cloudy") || weatherDescription.Contains("Cloudy") || weatherDescription.Contains("Overcast"))
+        else if (weatherDescription.Contains("Sunny") || weatherDescription.Contains("Clear") || weatherDescription.Contains("Partly cloudy") || weatherDescription.Contains("Cloudy") || weatherDescription.Contains("Overcast"))
             weatherAnimations["Sunny"].SetActive(true);
         else if (weatherDescription.Contains("Thunderstorm"))
             weatherAnimations["Thunderstorm"].SetActive(true);
