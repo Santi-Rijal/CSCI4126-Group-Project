@@ -14,6 +14,6 @@ public class DayOfWeek : MonoBehaviour
 
     void UpdateDayOfWeek()
     {
-        dayText.text = DateTime.Now.ToString("ddd", CultureInfo.InvariantCulture).ToUpper();
+        dayText.text = DateTime.Now.ToString("dddd", CultureInfo.InvariantCulture).ToUpper();
     }
 }
