@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,7 +8,14 @@ public class ItemClicks : MonoBehaviour {
 
     [SerializeField] private GameObject unClicked;
     [SerializeField] private GameObject clicked;
-    [SerializeField] private Bookings bookings;
+
+    private Bookings _bookings;
+    private Calendar _calendar;
+
+    private void Awake() {
+        _bookings = GameObject.Find("Bookings").GetComponent<Bookings>();
+        _calendar = GameObject.Find("CalendarCanvas").GetComponent<Calendar>();
+    }
 
     public void ItemClicked() {
         unClicked.gameObject.SetActive(!unClicked.gameObject.activeSelf);
@@ -19,38 +27,34 @@ public class ItemClicks : MonoBehaviour {
     }
 
     public void CourtConfirmClicked() {
-        var container = clicked.transform.Find("Details");
-        var courtNumber = container.Find("Court").GetComponent<TextMeshProUGUI>().text;
-        var time = container.Find("Time").GetComponent<TextMeshProUGUI>().text;
+        var item = GetComponent<CourtItems>();
 
-        var booking = new List<string>();
+        var booking = new List<object>();
         booking.Add("Court");
-        booking.Add(courtNumber);
-        booking.Add(time);
+        booking.Add(_calendar.GetDate());
+        booking.Add(item);
         
-        bookings.AddBooking(booking);
+        _bookings.AddBooking(booking);
         
-        unClicked.gameObject.SetActive(false);
+        unClicked.gameObject.SetActive(true);
         clicked.gameObject.SetActive(false);
+        
+        gameObject.SetActive(false);
     }
     
     public void ActivitiesConfirmClicked() {
-        var container = clicked.transform.Find("Details");
-        var activityTitle = container.Find("GameObject").Find("Title").GetComponent<TextMeshProUGUI>().text;
-        var activityTime = container.Find("GameObject").Find("Time").GetComponent<TextMeshProUGUI>().text;
-        var location = container.Find("Location").GetComponent<TextMeshProUGUI>().text;
-        var desc = container.Find("Desc").GetComponent<TextMeshProUGUI>().text;
+        var item = GetComponent<ActivitiesItem>();
 
-        var booking = new List<string>();
+        var booking = new List<object>();
         booking.Add("Activity");
-        booking.Add(activityTitle);
-        booking.Add(activityTime);
-        booking.Add(location);
-        booking.Add(desc);
+        booking.Add(_calendar.GetDate());
+        booking.Add(item);
         
-        bookings.AddBooking(booking);
+        _bookings.AddBooking(booking);
         
-        unClicked.gameObject.SetActive(false);
+        unClicked.gameObject.SetActive(true);
         clicked.gameObject.SetActive(false);
+        
+        gameObject.SetActive(false);
     }
 }

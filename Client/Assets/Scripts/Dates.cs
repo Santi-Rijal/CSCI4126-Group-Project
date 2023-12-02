@@ -39,4 +39,8 @@ public class Dates : MonoBehaviour {
       var text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
       text.color = Color.white;
    }
+
+   public override string ToString() {
+      return GetComponentInChildren<TextMeshProUGUI>().text;
+   }
 }

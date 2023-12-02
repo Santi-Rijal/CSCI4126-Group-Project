@@ -45,4 +45,8 @@ public class Tabs : MonoBehaviour {
         activityCanvas.SetActive(true);
         courtCanvas.SetActive(false);
     }
+
+    public string GetActiveCanvasName() {
+        return courtCanvas.activeSelf ? "Courts" : "Activities";
+    }
 }
