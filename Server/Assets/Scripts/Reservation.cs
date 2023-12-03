@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Reservation 
 {
-    int resDate;
-    int courtNumber;
-    int timeScale;
-    bool available;
+    public int courtNumber;
+    public int timeScale;
+    public bool available;
 
-    public Reservation(int date, int num, int time)
+    public Reservation(int num, int time)
     {
-        resDate = date;
         courtNumber = num;
         timeScale = time;
         available = true;

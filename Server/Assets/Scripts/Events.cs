@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Events
 {
-    string eventName;
-    int eventDate;
-    string eventPlace;
+    public string eventName;
+    public int eventDate;
+    public string eventPlace;
     int maxCapacity; // set up once instantiated
     int participants;
 
