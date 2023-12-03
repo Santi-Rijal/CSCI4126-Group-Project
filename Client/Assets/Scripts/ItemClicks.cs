@@ -1,22 +1,21 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using Riptide;
 
 public class ItemClicks : MonoBehaviour {
 
     [SerializeField] private GameObject unClicked;
     [SerializeField] private GameObject clicked;
-    [SerializeField] private GameObject bookingObject;
 
     private Bookings _bookings;
     private Calendar _calendar;
 
     private int _id = 0;
-
+    
     private void Awake() {
-        _bookings = bookingObject.GetComponent<Bookings>();
+        var booking = GameObject.Find("Bookings");
+        _bookings = booking.GetComponent<Bookings>();
         _calendar = GameObject.Find("CalendarCanvas").GetComponent<Calendar>();
     }
 
@@ -30,6 +29,9 @@ public class ItemClicks : MonoBehaviour {
     }
 
     public void CourtConfirmClicked() {
+        
+        SendMessage(ClientToServerId.name, "court item added");
+        
         var item = GetComponent<CourtItems>();
 
         var booking = new List<object>();
@@ -48,6 +50,9 @@ public class ItemClicks : MonoBehaviour {
     }
     
     public void ActivitiesConfirmClicked() {
+        
+        SendMessage(ClientToServerId.name, "activities item added");
+        
         var item = GetComponent<ActivitiesItem>();
         
         var booking = new List<object>();
@@ -63,5 +68,11 @@ public class ItemClicks : MonoBehaviour {
         _calendar.ChangeDate(_calendar.GetDay());
         
         _id++;
+    }
+    
+    private void SendMessage(ClientToServerId id, string messageText) {
+        Message message = Message.Create(MessageSendMode.Reliable, id);
+        message.Add(true);
+        NetworkManager.Singleton.Client.Send(message);
     }
 }

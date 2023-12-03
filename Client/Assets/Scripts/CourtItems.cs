@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -28,6 +25,7 @@ public class CourtItems : MonoBehaviour {
     }
 
     public void SetItem(CourtItems item) {
+        print(item);
         courtName = item.GetName();
         timeSlot = item.GetTime();
         

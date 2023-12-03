@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Account : MonoBehaviour {
 
-    private List<List<object>> _bookings;
+    private Bookings _bookings;
     
     [SerializeField] private Transform courtItem;
     [SerializeField] private Transform activityItem;
@@ -20,23 +16,24 @@ public class Account : MonoBehaviour {
     private int _prevSize;
     
     private void Awake() {
-        _bookings = bookingObject.GetComponent<Bookings>().bookings;
-        _prevSize = _bookings.Count;
+        var booking = GameObject.Find("Bookings");
+        _bookings = booking.GetComponent<Bookings>();
+        _prevSize = _bookings.bookings.Count;
         DisplayBookings();
     }
 
     private void Update() {
 
-        if (_prevSize != _bookings.Count) {
+        if (_prevSize != _bookings.bookings.Count) {
             DisplayBookings();
-            _prevSize = _bookings.Count;
+            _prevSize = _bookings.bookings.Count;
         }
     }
 
     private void DisplayBookings() {
         _currentY = 0;
         
-        foreach (var booking in _bookings) {
+        foreach (var booking in _bookings.bookings) {
             var dateExitsInUI = container.Find(booking[1].ToString());
             
             if (dateExitsInUI == null) {
@@ -133,18 +130,20 @@ public class Account : MonoBehaviour {
             var aItem = (ActivitiesItem) item;
 
             var list = GetList(aItem.id);
+            list[2] = aItem;
             bookingObject.GetComponent<Bookings>().RemoveBooking(list);
         }
         else {
-            var aItem = (CourtItems) item;
+            var cItem = (CourtItems) item;
 
-            var list = GetList(aItem.id);
+            var list = GetList(cItem.id);
+            list[2] = cItem;
             bookingObject.GetComponent<Bookings>().RemoveBooking(list);
         }
     }
 
     private List<object> GetList(int id) {
-        foreach (var item in _bookings) {
+        foreach (var item in _bookings.bookings) {
             if (item[3].Equals(id)) return item;
         }
 

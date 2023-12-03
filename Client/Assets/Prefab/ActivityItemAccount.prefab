@@ -529,10 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff521db70cd984b24985235ae149f589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activityName: Tennis lesson
-  activityLocation: Court 1
-  activityTime: 10 - 11am
-  activityDesc: Tennis lessons for beginners
+  activityName: 
+  activityLocation: 
+  activityTime: 
+  activityDesc: 
   name: {fileID: 3269980063380894850}
   time: {fileID: 8844893315095669997}
   location: {fileID: 3014162868177096885}

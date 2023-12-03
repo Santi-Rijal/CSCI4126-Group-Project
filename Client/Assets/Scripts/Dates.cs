@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -45,6 +44,7 @@ public class Dates : MonoBehaviour {
    }
 
    public void AddCourtItem(CourtItems item) {
+      print("add " + item);
       courtItems.Add(item);
    }
    

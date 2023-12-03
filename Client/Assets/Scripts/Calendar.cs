@@ -1,9 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Riptide;
+
 
 public class Calendar : MonoBehaviour {
 
@@ -17,8 +17,10 @@ public class Calendar : MonoBehaviour {
     private string _currentMonth;
     private string _selectedDate;
     private string _day;
-
+    
     private void Awake() {
+        NetworkManager.Singleton.Connect();
+        
         var currentDate = DateTime.Now;
         var month = currentDate.ToString("MMMM");
         var day = currentDate.ToString("dd");
@@ -37,12 +39,13 @@ public class Calendar : MonoBehaviour {
     private void Update() {
         Display(tabs.GetActiveCanvasName());
 
-        var booking = bookingsObject.GetComponent<Bookings>().bookingsRemoved;
+        var bookingObject = GameObject.Find("Bookings").GetComponent<Bookings>();
+        var booking = bookingsObject.bookingsRemoved;
 
-        print(booking);
+        print("count " + booking.Count);
         if (booking.Count != 0) {
             LoadDeletedFromAccount(booking);
-            bookingsObject.GetComponent<Bookings>().bookingsRemoved = new List<List<object>>();
+            bookingObject.Remove();
         }
     }
 
@@ -56,6 +59,8 @@ public class Calendar : MonoBehaviour {
             var day = GameObject.Find(dayPart);
             
             if (day != null) {
+                print("Day found");
+                print("item " + booking[0]);
                 var comp = day.GetComponent<Dates>();
 
                 if (booking[0].ToString().Equals("Court")) {
