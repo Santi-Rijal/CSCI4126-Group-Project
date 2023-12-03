@@ -15,6 +15,8 @@ public class ActivitiesItem : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI location;
     [SerializeField] private TextMeshProUGUI desc;
+
+    public int id;
     
     private void Awake() {
         name.text = activityName;
@@ -48,5 +50,11 @@ public class ActivitiesItem : MonoBehaviour {
         name.text = activityName;
         time.text = activityTime;
         location.text = activityLocation;
+    }
+
+    public void Delete() {
+        var account = GameObject.Find("AccountCanvas").GetComponent<Account>();
+        account.DeleteBooking("activity", this);
+        
     }
 }

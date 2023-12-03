@@ -1026,8 +1026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unClicked: {fileID: 1864008848542744305}
   clicked: {fileID: 3999296016933394847}
-  bookingsGameObject: {fileID: 1004440233788935292, guid: 2f19a1199f2224e5a853361b81534610, type: 3}
-  calendarGameObject: {fileID: 2079440954019868842, guid: 2dcef7f2d790b4837b750d29576728cc, type: 3}
+  bookingObject: {fileID: 1004440233788935292, guid: 2f19a1199f2224e5a853361b81534610, type: 3}
 --- !u!114 &5437984780273455161
 MonoBehaviour:
   m_ObjectHideFlags: 0

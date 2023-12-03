@@ -6,15 +6,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Dates : MonoBehaviour {
-   [SerializeField] private CourtItems[] courtItems;
-   [SerializeField] private ActivitiesItem[] activitiesItems;
+   [SerializeField] private List<CourtItems> courtItems;
+   [SerializeField] private List<ActivitiesItem> activitiesItems;
    
-   public CourtItems[] CourtItems {
+   public List<CourtItems> CourtItems {
       get => courtItems;
       set => courtItems = value;
    }
    
-   public ActivitiesItem[] ActivitiesItems {
+   public List<ActivitiesItem> ActivitiesItems {
       get => activitiesItems;
       set => activitiesItems = value;
    }
@@ -41,6 +41,45 @@ public class Dates : MonoBehaviour {
    }
 
    public override string ToString() {
-      return GetComponentInChildren<TextMeshProUGUI>().text;
+      return gameObject.name;
+   }
+
+   public void AddCourtItem(CourtItems item) {
+      courtItems.Add(item);
+   }
+   
+   public void AddActivityItem(ActivitiesItem item) {
+      activitiesItems.Add(item);
+   }
+
+   public void RemoveCourtItem(CourtItems item) {
+      
+      for (var i = 0; i < courtItems.Count; i++) {
+         var arrItem = courtItems[i];
+
+         if (arrItem.GetName().Equals(item.GetName())) {
+            if (arrItem.GetTime().Equals(item.GetTime())) {
+               courtItems.RemoveAt(i);
+            }
+         }
+      }
+   }
+   
+   public void RemoveActivityItem(ActivitiesItem item) {
+
+      for (var i = 0; i < activitiesItems.Count; i++) {
+         var arrItem = activitiesItems[i];
+
+         if (arrItem.GetName().Equals(item.GetName())) {
+            if (arrItem.GetLocation().Equals(item.GetLocation())) {
+               if (arrItem.GetTime().Equals(item.GetTime())) {
+                  if (arrItem.GetDesc().Equals(item.GetDesc())) {
+                     activitiesItems.RemoveAt(i);
+                  }
+               }
+            }
+         }
+      }
+      
    }
 }

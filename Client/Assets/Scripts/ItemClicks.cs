@@ -8,12 +8,15 @@ public class ItemClicks : MonoBehaviour {
 
     [SerializeField] private GameObject unClicked;
     [SerializeField] private GameObject clicked;
+    [SerializeField] private GameObject bookingObject;
 
     private Bookings _bookings;
     private Calendar _calendar;
 
+    private int _id = 0;
+
     private void Awake() {
-        _bookings = GameObject.Find("Bookings").GetComponent<Bookings>();
+        _bookings = bookingObject.GetComponent<Bookings>();
         _calendar = GameObject.Find("CalendarCanvas").GetComponent<Calendar>();
     }
 
@@ -33,28 +36,32 @@ public class ItemClicks : MonoBehaviour {
         booking.Add("Court");
         booking.Add(_calendar.GetDate());
         booking.Add(item);
+        booking.Add(_id);
+        item.id = _id;
         
         _bookings.AddBooking(booking);
         
-        unClicked.gameObject.SetActive(true);
-        clicked.gameObject.SetActive(false);
+        _calendar.RemoveCourtItem(item);
+        _calendar.ChangeDate(_calendar.GetDay());
         
-        gameObject.SetActive(false);
+        _id++;
     }
     
     public void ActivitiesConfirmClicked() {
         var item = GetComponent<ActivitiesItem>();
-
+        
         var booking = new List<object>();
         booking.Add("Activity");
         booking.Add(_calendar.GetDate());
         booking.Add(item);
+        booking.Add(_id);
+        item.id = _id;
         
         _bookings.AddBooking(booking);
         
-        unClicked.gameObject.SetActive(true);
-        clicked.gameObject.SetActive(false);
+        _calendar.RemoveActivityItem(item);
+        _calendar.ChangeDate(_calendar.GetDay());
         
-        gameObject.SetActive(false);
+        _id++;
     }
 }

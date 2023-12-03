@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unClicked: {fileID: 7516694228456644842}
   clicked: {fileID: 3324617790924988271}
-  bookingsGameObject: {fileID: 1004440233788935292, guid: 2f19a1199f2224e5a853361b81534610, type: 3}
+  bookingObject: {fileID: 1004440233788935292, guid: 2f19a1199f2224e5a853361b81534610, type: 3}
 --- !u!114 &8844493710157419360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1852,12 +1852,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activityName: Tennis lesson
   activityLocation: Court 1
-  activityTime: 10 - 11am
+  activityTime: 9 - 10am
   activityDesc: Tennis lessons for beginners
   name: {fileID: 7463893824682868888}
   time: {fileID: 5004438408312861848}
   location: {fileID: 6717187676413912925}
   desc: {fileID: 3616354054416805624}
+  id: 0
 --- !u!1 &6807868807967864437
 GameObject:
   m_ObjectHideFlags: 0

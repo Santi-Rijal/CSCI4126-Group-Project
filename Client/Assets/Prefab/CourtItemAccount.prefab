@@ -382,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 110.95618, y: 0}
+  m_SizeDelta: {x: 78.0876, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2845124786801010501
 CanvasRenderer:
@@ -466,7 +466,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6146227687244660054}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1371342653452002677}
+        m_TargetAssemblyTypeName: CourtItems, Assembly-CSharp
+        m_MethodName: Delete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7895198049536004703
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +532,7 @@ MonoBehaviour:
   timeSlot: 
   name: {fileID: 7188438409311414199}
   time: {fileID: 6968640696079426290}
+  id: 0
 --- !u!1 &8425076106293095749
 GameObject:
   m_ObjectHideFlags: 0
