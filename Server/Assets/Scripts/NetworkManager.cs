@@ -1,7 +1,9 @@
+using System;
 using TMPro;
 using Riptide;
 using Riptide.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * Class to manage the connection on the server side.
@@ -12,7 +14,13 @@ public class NetworkManager : MonoBehaviour {
 
     [SerializeField] private ushort port;   // Port for the server.
     [SerializeField] private ushort maxClientCount; // Num of clients allowed.
-    
+
+    private GameObject _reservedTablesGameObject;
+
+    private void Awake() {
+        _reservedTablesGameObject = GameObject.Find("ReservedTable");
+    }
+
     private void Start() {
         // Initialize riptide logs.
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
@@ -37,8 +45,49 @@ public class NetworkManager : MonoBehaviour {
 
     // A subscription method for message received event.
     private void ServerOnMessageReceived(object sender, MessageReceivedEventArgs e) {
-        var message = e.Message.GetString();    // Get message as a string.
-        print(message);
+        var type = e.Message.GetString();    
+        var time = e.Message.GetString();
+        var court = e.Message.GetString();
+
+        if (type.Equals("Reserve")) {
+            Reserve(time, court);
+        }
+
+        if (type.Equals("Remove")) {
+            RemoveReserve(time, court);
+        }
+    }
+
+    private void Reserve(string time, string court) {
+        var timeGameObject = _reservedTablesGameObject.transform.Find(time);
+
+        if (timeGameObject != null) {
+            var courtGameObject = timeGameObject.Find(court);
+
+            if (courtGameObject != null) {
+                var imageComponent = courtGameObject.GetComponent<Image>();
+                imageComponent.color = new Color32(31, 41, 96, 212);
+
+                var textComponent = courtGameObject.GetComponentInChildren<Text>();
+                textComponent.text = "RESERVED";
+            }
+        }
+    }
+
+    private void RemoveReserve(string time, string court) {
+        var timeGameObject = _reservedTablesGameObject.transform.Find(time);
+
+        if (timeGameObject != null) {
+            var courtGameObject = timeGameObject.Find(court);
+
+            if (courtGameObject != null) {
+                var imageComponent = courtGameObject.GetComponent<Image>();
+                imageComponent.color = new Color32(250, 249, 246, 125);
+
+                var textComponent = courtGameObject.GetComponentInChildren<Text>();
+                textComponent.text = "";
+            }
+        }
     }
     
     private void FixedUpdate() {

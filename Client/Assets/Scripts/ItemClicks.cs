@@ -46,7 +46,7 @@ public class ItemClicks : MonoBehaviour {
         
         _id++;
         
-        SendMessage(ClientToServerId.name, booking[1].ToString());
+        SendMessage(ClientToServerId.name, item.GetTime(), item.GetName());
     }
     
     public void ActivitiesConfirmClicked() {
@@ -68,9 +68,11 @@ public class ItemClicks : MonoBehaviour {
         _id++;
     }
     
-    private void SendMessage(ClientToServerId id, string date) {
+    private void SendMessage(ClientToServerId id, string time, string court) {
         Message message = Message.Create(MessageSendMode.Reliable, id);
-        message.Add(date);
+        message.Add("Reserve");
+        message.Add(time);
+        message.Add(court);
         NetworkManager.Singleton.Client.Send(message);
     }
 }

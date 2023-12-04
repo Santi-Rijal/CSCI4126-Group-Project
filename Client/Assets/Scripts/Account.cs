@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Riptide;
 
 public class Account : MonoBehaviour {
 
@@ -139,6 +140,12 @@ public class Account : MonoBehaviour {
             var list = GetList(cItem.id);
             list[2] = cItem;
             bookingObject.GetComponent<Bookings>().RemoveBooking(list);
+            
+            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
+            message.Add("Remove");
+            message.Add(cItem.GetTime());
+            message.Add(cItem.GetName());
+            NetworkManager.Singleton.Client.Send(message);
         }
     }
 

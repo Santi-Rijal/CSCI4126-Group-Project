@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 659771}
   - component: {fileID: 659770}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 28107321}
   - component: {fileID: 28107320}
   m_Layer: 0
-  m_Name: Time (5)
+  m_Name: 1 - 2pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 44385908}
   - component: {fileID: 44385907}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12281951, g: 0.16065641, b: 0.3773585, a: 0.83137256}
+  m_Color: {r: 0.98039216, g: 0.9764706, b: 0.9647059, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 57110934}
   - component: {fileID: 57110933}
   m_Layer: 0
-  m_Name: 10to11
+  m_Name: 10 - 11am
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 63378642}
   - component: {fileID: 63378641}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 100954764}
   - component: {fileID: 100954763}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 154843677}
   - component: {fileID: 154843676}
   m_Layer: 0
-  m_Name: Time (2)
+  m_Name: 10 - 11am
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 233080283}
   - component: {fileID: 233080282}
   m_Layer: 0
-  m_Name: 4to5
+  m_Name: 4 - 5pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 277220225}
   - component: {fileID: 277220224}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 287536807}
   - component: {fileID: 287536806}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 340545889}
   - component: {fileID: 340545888}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1835,7 +1835,7 @@ GameObject:
   - component: {fileID: 361415809}
   - component: {fileID: 361415808}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1927,7 +1927,7 @@ GameObject:
   - component: {fileID: 391057970}
   - component: {fileID: 391057969}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2193,7 +2193,7 @@ GameObject:
   - component: {fileID: 402238477}
   - component: {fileID: 402238476}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2445,7 +2445,7 @@ GameObject:
   - component: {fileID: 423147438}
   - component: {fileID: 423147437}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2795,7 +2795,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 16:00 - 17:00
+  m_Text: 4 - 5pm
 --- !u!222 &470723372
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2817,7 +2817,7 @@ GameObject:
   - component: {fileID: 476805505}
   - component: {fileID: 476805504}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3297,7 +3297,7 @@ GameObject:
   - component: {fileID: 541887702}
   - component: {fileID: 541887701}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3389,7 +3389,7 @@ GameObject:
   - component: {fileID: 582912051}
   - component: {fileID: 582912050}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3706,7 +3706,7 @@ GameObject:
   - component: {fileID: 673397057}
   - component: {fileID: 673397056}
   m_Layer: 0
-  m_Name: Time (7)
+  m_Name: 3 - 4pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3797,7 +3797,7 @@ GameObject:
   - component: {fileID: 689455781}
   - component: {fileID: 689455780}
   m_Layer: 0
-  m_Name: 9to10
+  m_Name: 9 - 10am
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4053,7 +4053,7 @@ GameObject:
   - component: {fileID: 728475976}
   - component: {fileID: 728475975}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4202,7 +4202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12:00 - 13:00
+  m_Text: 12 - 1pm
 --- !u!222 &744169726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4439,7 +4439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 13:00 - 14:00
+  m_Text: 1 - 2pm
 --- !u!222 &813160402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4461,7 +4461,7 @@ GameObject:
   - component: {fileID: 816778001}
   - component: {fileID: 816778000}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4553,7 +4553,7 @@ GameObject:
   - component: {fileID: 826151046}
   - component: {fileID: 826151045}
   m_Layer: 0
-  m_Name: Time (3)
+  m_Name: 11 - 12pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4645,7 +4645,7 @@ GameObject:
   - component: {fileID: 836161366}
   - component: {fileID: 836161365}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4816,7 +4816,7 @@ GameObject:
   - component: {fileID: 838428207}
   - component: {fileID: 838428206}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5283,7 +5283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 09:00 - 10:00
+  m_Text: 9 - 10am
 --- !u!222 &953999988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5504,7 +5504,7 @@ GameObject:
   - component: {fileID: 982892739}
   - component: {fileID: 982892738}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5595,7 +5595,7 @@ GameObject:
   - component: {fileID: 997314954}
   - component: {fileID: 997314953}
   m_Layer: 0
-  m_Name: 1to2
+  m_Name: 1 - 2pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5675,7 +5675,7 @@ GameObject:
   - component: {fileID: 1004809140}
   - component: {fileID: 1004809139}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5767,7 +5767,7 @@ GameObject:
   - component: {fileID: 1070590581}
   - component: {fileID: 1070590580}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5995,7 +5995,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 15:00 - 16:00
+  m_Text: 3 - 4pm
 --- !u!222 &1099973792
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6074,7 +6074,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 14:00 - 15:00
+  m_Text: 2 - 3pm
 --- !u!222 &1100843251
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6096,7 +6096,7 @@ GameObject:
   - component: {fileID: 1100903974}
   - component: {fileID: 1100903973}
   m_Layer: 0
-  m_Name: Time (8)
+  m_Name: 4 - 5pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6187,7 +6187,7 @@ GameObject:
   - component: {fileID: 1102058014}
   - component: {fileID: 1102058013}
   m_Layer: 0
-  m_Name: 11to12
+  m_Name: 11 - 12pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6346,7 +6346,7 @@ GameObject:
   - component: {fileID: 1137132747}
   - component: {fileID: 1137132746}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6495,7 +6495,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10:00 - 11:00
+  m_Text: 10 - 11am
 --- !u!222 &1142399658
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6595,7 +6595,7 @@ GameObject:
   - component: {fileID: 1183836496}
   - component: {fileID: 1183836495}
   m_Layer: 0
-  m_Name: 12to1
+  m_Name: 12 - 1pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7159,7 +7159,7 @@ GameObject:
   - component: {fileID: 1329211282}
   - component: {fileID: 1329211281}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7251,7 +7251,7 @@ GameObject:
   - component: {fileID: 1375305150}
   - component: {fileID: 1375305149}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7437,7 +7437,7 @@ GameObject:
   - component: {fileID: 1408935024}
   - component: {fileID: 1408935023}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7529,7 +7529,7 @@ GameObject:
   - component: {fileID: 1425537831}
   - component: {fileID: 1425537830}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7994,7 +7994,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 11:00 - 12:00
+  m_Text: 11 - 12pm
 --- !u!222 &1466299662
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8016,7 +8016,7 @@ GameObject:
   - component: {fileID: 1477407685}
   - component: {fileID: 1477407687}
   m_Layer: 0
-  m_Name: Time (1)
+  m_Name: 9 - 10am
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8108,7 +8108,7 @@ GameObject:
   - component: {fileID: 1503828066}
   - component: {fileID: 1503828065}
   m_Layer: 0
-  m_Name: Time (4)
+  m_Name: 12 - 1pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8279,7 +8279,7 @@ GameObject:
   - component: {fileID: 1539617928}
   - component: {fileID: 1539617927}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8450,7 +8450,7 @@ GameObject:
   - component: {fileID: 1579876177}
   - component: {fileID: 1579876176}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8542,7 +8542,7 @@ GameObject:
   - component: {fileID: 1583954368}
   - component: {fileID: 1583954367}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8691,7 +8691,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RESERVED
+  m_Text: 
 --- !u!222 &1585199101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8871,7 +8871,7 @@ GameObject:
   - component: {fileID: 1605319250}
   - component: {fileID: 1605319249}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9145,7 +9145,7 @@ GameObject:
   - component: {fileID: 1633680600}
   - component: {fileID: 1633680599}
   m_Layer: 0
-  m_Name: 2to3
+  m_Name: 2 - 3pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9225,7 +9225,7 @@ GameObject:
   - component: {fileID: 1638785311}
   - component: {fileID: 1638785310}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9475,7 +9475,7 @@ GameObject:
   - component: {fileID: 1789982552}
   - component: {fileID: 1789982551}
   m_Layer: 0
-  m_Name: Court (2)
+  m_Name: Court 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9567,7 +9567,7 @@ GameObject:
   - component: {fileID: 1792972880}
   - component: {fileID: 1792972879}
   m_Layer: 0
-  m_Name: Court (3)
+  m_Name: Court 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10044,7 +10044,7 @@ GameObject:
   - component: {fileID: 1857435917}
   - component: {fileID: 1857435916}
   m_Layer: 0
-  m_Name: 3to4
+  m_Name: 3 - 4pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10300,7 +10300,7 @@ GameObject:
   - component: {fileID: 1937822097}
   - component: {fileID: 1937822096}
   m_Layer: 0
-  m_Name: Time (6)
+  m_Name: 2 - 3pm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10550,7 +10550,7 @@ GameObject:
   - component: {fileID: 1963123013}
   - component: {fileID: 1963123012}
   m_Layer: 0
-  m_Name: Court (1)
+  m_Name: Court 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10818,7 +10818,7 @@ GameObject:
   - component: {fileID: 1998500884}
   - component: {fileID: 1998500883}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11338,7 +11338,7 @@ GameObject:
   - component: {fileID: 2057515577}
   - component: {fileID: 2057515576}
   m_Layer: 0
-  m_Name: Court (4)
+  m_Name: Court 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
