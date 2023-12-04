@@ -19,7 +19,6 @@ public class Calendar : MonoBehaviour {
     private string _day;
     
     private void Awake() {
-        NetworkManager.Singleton.Connect();
         
         var currentDate = DateTime.Now;
         var month = currentDate.ToString("MMMM");
