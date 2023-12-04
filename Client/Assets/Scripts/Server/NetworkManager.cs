@@ -47,11 +47,10 @@ public class NetworkManager : MonoBehaviour {
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
 
         Client = new Client();  // Create a new client.
+        Connect();
 
         Client.ConnectionFailed += FailedToConnect; // Subscribe to connect to failed event.
         Client.Disconnected += DidDisconnect;   // Subscribe to disconnected event.
-        
-        Connect();
     }
 
     private void FixedUpdate() {

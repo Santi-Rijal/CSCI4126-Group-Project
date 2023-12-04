@@ -1,59 +1,51 @@
+using TMPro;
 using Riptide;
 using Riptide.Utils;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviour
-{
-    private Server server = new();
+/**
+ * Class to manage the connection on the server side.
+ */
+public class NetworkManager : MonoBehaviour {
 
-    public static bool IsConnected;
+    public Server Server { get; private set; }
 
-    // Codes for initial setup and sending data are from:
-    // https://riptide.tomweiland.net/manual/overview/getting-started.html
-
-    void Start()
-    {
+    [SerializeField] private ushort port;   // Port for the server.
+    [SerializeField] private ushort maxClientCount; // Num of clients allowed.
+    
+    private void Start() {
+        // Initialize riptide logs.
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
-        server.Start(7777, 10);
+
+        Server = new Server();  // Create a new server.
+        Server.Start(port, maxClientCount); // Start the server on port with max client count.
+
+        Server.MessageReceived += ServerOnMessageReceived;  // Subscribe to message received event.
+        Server.ClientDisconnected += ServerOnClientDisconnected;    // Subscribe to client disconnect event.
+        Server.ClientConnected += ServerOnClientConnected;  // Subscribe to client connect event.
     }
 
-    private void FixedUpdate()
-    {
-        server.Update();
-        Message message1 = Message.Create(MessageSendMode.Unreliable, 1);
-        for (int i = 0; i < FakeDataSetup.reservations.Count; i++)
-        {
-            message1.AddInt(FakeDataSetup.reservations[i].timeScale);
-            message1.AddInt(FakeDataSetup.reservations[i].courtNumber);
-            message1.AddBool(FakeDataSetup.reservations[i].available);
-        }
-        server.SendToAll(message1);
-
-        Message message2 = Message.Create(MessageSendMode.Unreliable, 2);
-        for (int i = 0; i < FakeDataSetup.events.Count; i++)
-        {
-            message2.AddString(FakeDataSetup.events[i].eventName);
-            message2.AddInt(FakeDataSetup.events[i].eventDate);
-            message2.AddString(FakeDataSetup.events[i].eventPlace);
-            message2.AddInt(FakeDataSetup.events[i].GetCapacity());
-        }
+    // A subscription method for client connected event.
+    private void ServerOnClientConnected(object sender, ServerConnectedEventArgs e) {
+        print("Connected");
     }
 
-    private void OnDestroy()
-    {
-        server.Stop();
+    // A subscription method for client disconnected event.
+    private void ServerOnClientDisconnected(object sender, ServerDisconnectedEventArgs e) {
+        print("Disconnected");
     }
 
-    [MessageHandler(0)]
-    private static void HandleMessage1FromServer(ushort i, Message message)
-    {
-        //FakeDataSetup.events[i].AddParticipant();
+    // A subscription method for message received event.
+    private void ServerOnMessageReceived(object sender, MessageReceivedEventArgs e) {
+        var message = e.Message.GetString();    // Get message as a string.
+        print(message);
+    }
+    
+    private void FixedUpdate() {
+        Server.Update();    // Call the server's update method at a fixed update.
     }
 
-    [MessageHandler(1)]
-    private static void HandleMessage2FromServer(ushort i, Message message)
-    {
-        //FakeDataSetup.reservations[i].Reserve();
+    private void OnApplicationQuit() {
+        Server.Stop();  // Stop the server on application quit.
     }
-
 }

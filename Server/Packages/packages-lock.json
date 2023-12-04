@@ -14,7 +14,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.aseprite": {
-      "version": "1.0.1",
+      "version": "1.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -139,7 +139,7 @@
         "com.unity.2d.spriteshape": "9.0.2",
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.2d.tilemap.extras": "3.1.1",
-        "com.unity.2d.aseprite": "1.0.1"
+        "com.unity.2d.aseprite": "1.0.0"
       }
     },
     "com.unity.ide.rider": {
@@ -257,11 +257,11 @@
       "url": "https://packages.unity.com"
     },
     "net.tomweiland.riptide": {
-      "version": "https://github.com/RiptideNetworking/Riptide.git?path=/Packages/Core#2.0.0",
+      "version": "https://github.com/RiptideNetworking/Riptide.git?path=/Packages/Core#unity-package",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "bb252ba2ea4bd1314d3f8f60bea490418635d06e"
+      "hash": "aa9029911b4f28a70a4438f1245a88ffc17fa2aa"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

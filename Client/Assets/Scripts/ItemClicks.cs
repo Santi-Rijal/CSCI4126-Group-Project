@@ -30,8 +30,6 @@ public class ItemClicks : MonoBehaviour {
 
     public void CourtConfirmClicked() {
         
-        SendMessage(ClientToServerId.name, "court item added");
-        
         var item = GetComponent<CourtItems>();
 
         var booking = new List<object>();
@@ -47,11 +45,11 @@ public class ItemClicks : MonoBehaviour {
         _calendar.ChangeDate(_calendar.GetDay());
         
         _id++;
+        
+        SendMessage(ClientToServerId.name, booking[1].ToString());
     }
     
     public void ActivitiesConfirmClicked() {
-        
-        SendMessage(ClientToServerId.name, "activities item added");
         
         var item = GetComponent<ActivitiesItem>();
         
@@ -70,9 +68,9 @@ public class ItemClicks : MonoBehaviour {
         _id++;
     }
     
-    private void SendMessage(ClientToServerId id, string messageText) {
+    private void SendMessage(ClientToServerId id, string date) {
         Message message = Message.Create(MessageSendMode.Reliable, id);
-        message.Add(true);
+        message.Add(date);
         NetworkManager.Singleton.Client.Send(message);
     }
 }
