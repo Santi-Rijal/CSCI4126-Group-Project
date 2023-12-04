@@ -1221,7 +1221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9093607953082530112, guid: c71b07532b1d043b7a49a73c0b642908, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140465164276530743, guid: c71b07532b1d043b7a49a73c0b642908, type: 3}
       propertyPath: m_Name
@@ -1363,8 +1363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68034d679abc488e860326627f43fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 0
-  ip: 
+  port: 7777
+  ip: 127.0.0.1
 --- !u!4 &911855003
 Transform:
   m_ObjectHideFlags: 0
@@ -1715,7 +1715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2397004762015640825, guid: be070d8b9e60b4401a1c70b9983ca369, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5478762760415066645, guid: be070d8b9e60b4401a1c70b9983ca369, type: 3}
       propertyPath: m_Pivot.x

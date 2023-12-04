@@ -34,8 +34,8 @@ public class NetworkManager : MonoBehaviour {
 
     public Client Client { get; private set; }  // Client get and set methods.
 
-    [SerializeField] private ushort port = 7777;   // Port to run on.
-    [SerializeField] private string ip = "134.190.186.7"; // Ip to connect on.
+    [SerializeField] private ushort port;   // Port to run on.
+    [SerializeField] private string ip; // Ip to connect on.
 
     // Set singleton.
     private void Awake() {
@@ -50,6 +50,8 @@ public class NetworkManager : MonoBehaviour {
 
         Client.ConnectionFailed += FailedToConnect; // Subscribe to connect to failed event.
         Client.Disconnected += DidDisconnect;   // Subscribe to disconnected event.
+        
+        Connect();
     }
 
     private void FixedUpdate() {
@@ -72,12 +74,10 @@ public class NetworkManager : MonoBehaviour {
         Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
         message.Add("Failed to connect");
         Client.Send(message);
-        
-        //UIManager.Singleton.BackToMain();   // Display the connect screen.
     }
     
     // A subscription method for disconnect event.
     private void DidDisconnect(object sender, EventArgs e) {
-        //UIManager.Singleton.BackToMain();   // Display the connect screen.
+       
     }
 }
