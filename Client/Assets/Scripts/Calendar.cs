@@ -58,8 +58,6 @@ public class Calendar : MonoBehaviour {
             var day = GameObject.Find(dayPart);
             
             if (day != null) {
-                print("Day found");
-                print("item " + booking[0]);
                 var comp = day.GetComponent<Dates>();
 
                 if (booking[0].ToString().Equals("Court")) {
@@ -68,9 +66,12 @@ public class Calendar : MonoBehaviour {
 
                 if (booking[0].ToString().Equals("Activity")) {
                     comp.AddActivityItem((ActivitiesItem) booking[2]);
+                    
                 }
             }
         }
+
+        bookingsObject.bookingsRemoved = new List<List<object>>();
     }
 
     public void ChangeDate(Dates date) {

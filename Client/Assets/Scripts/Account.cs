@@ -32,6 +32,7 @@ public class Account : MonoBehaviour {
     }
 
     private void DisplayBookings() {
+        
         _currentY = 0;
         
         foreach (var booking in _bookings.bookings) {
@@ -50,7 +51,7 @@ public class Account : MonoBehaviour {
                     
                     var itemContainer = Instantiate(courtItem, month);
                     
-                    itemContainer.gameObject.name = item.GetName();
+                    itemContainer.gameObject.name = item.GetName() + " " + item.GetTime();
                     itemContainer.GetComponent<CourtItems>().SetItem(item);
                     
                     PositionItem(itemContainer.GetComponent<RectTransform>(), month.childCount - 1, false);
@@ -61,24 +62,26 @@ public class Account : MonoBehaviour {
                     
                     var itemContainer = Instantiate(activityItem, month);
 
-                    itemContainer.gameObject.name = item.GetName();
+                    itemContainer.gameObject.name = item.GetName() + " " + item.GetTime();
                     itemContainer.GetComponent<ActivitiesItem>().SetItem(item);
                     
                     PositionItem(itemContainer.GetComponent<RectTransform>(), month.childCount - 1, false);
                 }
 
                 var containerRact = month.GetComponent<RectTransform>();
-                containerRact.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 70 * month.childCount);
+                containerRact.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 200 * month.childCount);
             }
             else {
                 
                 if (booking[0].Equals("Court")) {
                     
                     var item = (CourtItems) booking[2];
-                    var exists = dateExitsInUI.Find(item.GetName());
+                    var exists = dateExitsInUI.Find(item.GetName() + " " + item.GetTime());
 
                     if (exists == null) {
                         var itemContainer = Instantiate(courtItem, dateExitsInUI);
+                        
+                        itemContainer.gameObject.name = item.GetName() + " " + item.GetTime();
                         itemContainer.GetComponent<CourtItems>().SetItem(item);
                     
                         PositionItem(itemContainer.GetComponent<RectTransform>(), dateExitsInUI.childCount - 1, false);
@@ -87,10 +90,12 @@ public class Account : MonoBehaviour {
 
                 if (booking[0].Equals("Activity")) {
                     var item = (ActivitiesItem) booking[2];
-                    var exists = dateExitsInUI.Find(item.GetName());
+                    var exists = dateExitsInUI.Find(item.GetName() + " " + item.GetTime());
 
                     if (exists == null) {
                         var itemContainer = Instantiate(activityItem, dateExitsInUI);
+                        
+                        itemContainer.gameObject.name = item.GetName() + " " + item.GetTime();
                         itemContainer.GetComponent<ActivitiesItem>().SetItem(item);
                     
                         PositionItem(itemContainer.GetComponent<RectTransform>(), dateExitsInUI.childCount - 1, false);
@@ -98,7 +103,7 @@ public class Account : MonoBehaviour {
                 }
                 
                 var containerRact = dateExitsInUI.GetComponent<RectTransform>();
-                containerRact.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 70 * dateExitsInUI.childCount);
+                containerRact.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 200 * dateExitsInUI.childCount);
             }
         }
     }
@@ -113,19 +118,20 @@ public class Account : MonoBehaviour {
                 currentHeight -= container.GetChild(i).GetComponent<RectTransform>().rect.height;
             }
 
-            currentHeight -= 10f;
+            if (currentHeight != 0) {
+                currentHeight -= 100f;
+            }
             
             currentPosition.y = currentHeight;
         }
         else {
-            currentPosition.y = siblings * -70;
+            currentPosition.y = siblings * -210;
         }
         
         rect.anchoredPosition = currentPosition;
     }
 
     public void DeleteBooking(string type, object item) {
-        Reload();
 
         if (type.Equals("activity")) {
             var aItem = (ActivitiesItem) item;
@@ -133,6 +139,12 @@ public class Account : MonoBehaviour {
             var list = GetList(aItem.id);
             list[2] = aItem;
             bookingObject.GetComponent<Bookings>().RemoveBooking(list);
+            
+            var gameObject = container.Find(list[1].ToString()).Find(aItem.GetName() + " " + aItem.GetTime());
+
+            if (gameObject != null) {
+                Destroy(gameObject.gameObject);
+            }
         }
         else {
             var cItem = (CourtItems) item;
@@ -140,6 +152,12 @@ public class Account : MonoBehaviour {
             var list = GetList(cItem.id);
             list[2] = cItem;
             bookingObject.GetComponent<Bookings>().RemoveBooking(list);
+            
+            var gameObject = container.Find(list[1].ToString()).Find(cItem.GetName() + " " + cItem.GetTime());
+
+            if (gameObject != null) {
+                Destroy(gameObject.gameObject);
+            }
             
             Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
             message.Add("Remove");
