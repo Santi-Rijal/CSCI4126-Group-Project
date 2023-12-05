@@ -56,48 +56,54 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Reserves time slots for a specified court.
-    /// </summary>
-    /// <param name="time">The time range for the reservation.</param>
-    /// <param name="court">The court to be reserved.</param>
-    private void Reserve(string time, string court) {
-        foreach (var timeSlot in GetTimeSlots(time)) {
-            var timeGameObject = _reservedTablesGameObject.transform.Find(timeSlot);
-            if (timeGameObject != null) {
-                ReserveCourt(timeGameObject, court);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Removes reservation from time slots for a specified court.
-    /// </summary>
-    /// <param name="time">The time range for which the reservation will be removed.</param>
-    /// <param name="court">The court to remove the reservation from.</param>
-    private void RemoveReserve(string time, string court) {
-        foreach (var timeSlot in GetTimeSlots(time)) {
-            var timeGameObject = _reservedTablesGameObject.transform.Find(timeSlot);
-            if (timeGameObject != null) {
-                RemoveReservationFromCourt(timeGameObject, court);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Parses a time range string into individual time slots.
-    /// </summary>
-    /// <param name="timeRange">The time range string to parse.</param>
-    /// <returns>An enumerable of time slot strings.</returns>
-    private IEnumerable<string> GetTimeSlots(string timeRange) {
+    private IEnumerable<string> GetTimeSlots(string timeRange) 
+    {
         var parts = timeRange.Split('-').Select(t => t.Trim()).ToArray();
-        var startTime = int.Parse(parts[0].Split(' ')[0]);
-        var endTime = int.Parse(parts[1].Split(' ')[0]);
-        var amPm = parts[1].Substring(parts[1].Length - 2);
 
-        for (int hour = startTime; hour < endTime; hour++) {
-            yield return $"{hour} - {hour + 1}{amPm}";
+        if (parts.Length != 2) {
+            Debug.LogError("Invalid time format: " + timeRange);
+            yield break;
         }
+
+        // Extract the start and end time parts
+        string startHourStr = parts[0];
+        string endHourStr = parts[1];
+
+        // Identify the AM/PM part from the end time
+        string amPm = endHourStr.Substring(endHourStr.Length - 2).ToLower();
+        endHourStr = endHourStr.Substring(0, endHourStr.Length - 2).Trim();
+
+        // Safely parse the hours
+        if (!int.TryParse(startHourStr, out int startHour) || !int.TryParse(endHourStr, out int endHour)) {
+            Debug.LogError("Invalid time format: " + timeRange);
+            yield break;
+        }
+
+        // Convert to 24-hour format for calculation
+        startHour = ConvertTo24HourFormat(startHour, amPm);
+        endHour = ConvertTo24HourFormat(endHour, amPm);
+
+        // Generate time slots
+        for (int hour = startHour; hour < endHour; hour++) {
+            int nextHour = hour + 1;
+            yield return $"{ConvertTo12HourFormat(hour)} - {ConvertTo12HourFormat(nextHour)}";
+        }
+    }
+
+    private int ConvertTo24HourFormat(int hour, string amPm) {
+        if (amPm == "pm" && hour != 12) {
+            return hour + 12;
+        } else if (amPm == "am" && hour == 12) {
+            return 0;
+        }
+        return hour;
+    }
+
+    private string ConvertTo12HourFormat(int hour) {
+        int displayHour = hour % 12;
+        displayHour = displayHour == 0 ? 12 : displayHour;
+        string amPm = hour < 12 || hour == 24 ? "am" : "pm";
+        return $"{displayHour}{amPm}";
     }
 
     /// <summary>
@@ -106,12 +112,12 @@ public class NetworkManager : MonoBehaviour {
     /// <param name="timeGameObject">The time slot GameObject.</param>
     /// <param name="court">The court to be reserved.</param>
     private void ReserveCourt(GameObject timeGameObject, string court) {
-        var courtGameObject = timeGameObject.Find(court);
+        var courtGameObject = timeGameObject.transform.Find(court);
         if (courtGameObject != null) {
-            var imageComponent = courtGameObject.GetComponent<Image>();
+            var imageComponent = courtGameObject.gameObject.GetComponent<Image>();
             imageComponent.color = new Color32(31, 41, 96, 212);
 
-            var textComponent = courtGameObject.GetComponentInChildren<Text>();
+            var textComponent = courtGameObject.gameObject.GetComponentInChildren<Text>();
             textComponent.text = "RESERVED";
         }
     }
@@ -122,12 +128,12 @@ public class NetworkManager : MonoBehaviour {
     /// <param name="timeGameObject">The time slot GameObject.</param>
     /// <param name="court">The court to remove the reservation from.</param>
     private void RemoveReservationFromCourt(GameObject timeGameObject, string court) {
-        var courtGameObject = timeGameObject.Find(court);
+        var courtGameObject = timeGameObject.transform.Find(court);
         if (courtGameObject != null) {
-            var imageComponent = courtGameObject.GetComponent<Image>();
+            var imageComponent = courtGameObject.gameObject.GetComponent<Image>();
             imageComponent.color = new Color32(250, 249, 246, 125);
 
-            var textComponent = courtGameObject.GetComponentInChildren<Text>();
+            var textComponent = courtGameObject.gameObject.GetComponentInChildren<Text>();
             textComponent.text = "";
         }
     }
