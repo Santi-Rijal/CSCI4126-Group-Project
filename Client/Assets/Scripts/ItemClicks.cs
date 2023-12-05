@@ -46,7 +46,7 @@ public class ItemClicks : MonoBehaviour {
         
         _id++;
         
-        SendMessage(ClientToServerId.name, item.GetTime(), item.GetName());
+        SendMessage(ClientToServerId.name, "Reserve", item.GetTime(), item.GetName());
     }
     
     public void ActivitiesConfirmClicked() {
@@ -66,11 +66,13 @@ public class ItemClicks : MonoBehaviour {
         _calendar.ChangeDate(_calendar.GetDay());
         
         _id++;
+
+        SendMessage(ClientToServerId.name, "Activity", item.GetTime(), item.GetName());
     }
     
-    private void SendMessage(ClientToServerId id, string time, string court) {
+    private void SendMessage(ClientToServerId id, string type, string time, string court) {
         Message message = Message.Create(MessageSendMode.Reliable, id);
-        message.Add("Reserve");
+        message.Add(type);
         message.Add(time);
         message.Add(court);
         NetworkManager.Singleton.Client.Send(message);

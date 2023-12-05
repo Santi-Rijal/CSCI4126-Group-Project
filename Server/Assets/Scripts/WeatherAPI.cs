@@ -87,7 +87,7 @@ public class WeatherAPIScript : MonoBehaviour
             weatherAnimations["Hail"].SetActive(true);
         else if (weatherDescription.Contains("Rain") || weatherDescription.Contains("Drizzle") || weatherDescription.Contains("Light rain") || weatherDescription.Contains("Heavy rain") || weatherDescription.Contains("Fog") || weatherDescription.Contains("Mist"))
             weatherAnimations["Rain"].SetActive(true);
-        else if (weatherDescription.Contains("Snow") || weatherDescription.Contains("Light snow") || weatherDescription.Contains("Heavy snow"))
+        else if (weatherDescription.Contains("Snow") || weatherDescription.Contains("Light snow") || weatherDescription.Contains("Heavy snow") || weatherDescription.Contains("Flurries"))
             weatherAnimations["Snow"].SetActive(true);
         else if (weatherDescription.Contains("Sunny") || weatherDescription.Contains("Clear") || weatherDescription.Contains("Partly cloudy") || weatherDescription.Contains("Cloudy") || weatherDescription.Contains("Overcast"))
             weatherAnimations["Sunny"].SetActive(true);

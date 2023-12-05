@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using TMPro;
 using Riptide;
 using Riptide.Utils;
@@ -16,9 +17,11 @@ public class NetworkManager : MonoBehaviour {
     [SerializeField] private ushort maxClientCount; // Num of clients allowed.
 
     private GameObject _reservedTablesGameObject;
+    private GameObject _tennisLesson;
 
     private void Awake() {
         _reservedTablesGameObject = GameObject.Find("ReservedTable");
+        _tennisLesson = GameObject.Find("Event (3)");
     }
 
     private void Start() {
@@ -49,12 +52,99 @@ public class NetworkManager : MonoBehaviour {
         var time = e.Message.GetString();
         var court = e.Message.GetString();
 
-        if (type.Equals("Reserve")) {
+        if (type.Equals("Reserve")) 
+        {
+            HandleReserve(time, court);
+        }
+        else if (type.Equals("Remove")) 
+        {
+            RemoveReserve(time, court);
+        }
+        else if (type.Equals("Activity")) 
+        {
+            if (court == "Tennis Lesson")
+            {
+                HandleReserve(time, "Court 2");
+            }
+            IncrementRegisteredCount(_tennisLesson);
+        }
+    }
+
+    private void IncrementRegisteredCount(GameObject parentGameObject)
+    {
+        Transform registeredTransform = parentGameObject.transform.Find("Registered");
+        if (registeredTransform != null)
+        {
+            Text textComponent = registeredTransform.GetComponent<Text>();
+            if (textComponent != null)
+            {
+                string currentText = textComponent.text;
+
+                // Assuming the format is always "number/total Registered"
+                string[] parts = currentText.Split(' ')[0].Split('/');
+                int currentCount = int.Parse(parts[0]);
+                int totalCount = int.Parse(parts[1]);
+
+                currentCount++; // Increment the count
+
+                // Update the text
+                textComponent.text = currentCount.ToString() + "/" + totalCount.ToString() + " Registered";
+            }
+            else
+            {
+                Debug.LogError("Text component not found on Registered object!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Registered child not found!");
+        }
+    }
+
+    private void HandleReserve(string time, string court)
+    {
+        int[] times = new int[] { 9, 10, 11, 12, 1, 2, 3, 4, 5 };
+
+        string[] splitTime = time.Split('-');
+
+        string firstTime = splitTime[0].Trim();
+        string secondTime = splitTime[1].Trim();
+
+        firstTime = Regex.Match(firstTime, @"\d+").Value;
+        secondTime = Regex.Match(secondTime, @"\d+").Value;
+
+        string amPm = Regex.Match(splitTime[1], "[AaPp][Mm]").Value;
+
+        int firstTimeInt = int.Parse(firstTime);
+        int secondTimeInt = int.Parse(secondTime);
+
+        Debug.Log("First Time: " + firstTimeInt);
+        Debug.Log("Second Time: " + secondTimeInt + amPm);
+
+        int first = Array.IndexOf(times, firstTimeInt);
+        int second = Array.IndexOf(times, secondTimeInt);
+
+        if(second - first == 1)
+        {
             Reserve(time, court);
         }
-
-        if (type.Equals("Remove")) {
-            RemoveReserve(time, court);
+        else
+        {
+            for (int i = first; i < second; i++)
+            {
+                Debug.Log(court);
+                string amOrPm = (i < 2) ? "am" : "pm";
+                string timeInterval = times[i].ToString() + " - " + times[i + 1].ToString() + amOrPm;
+                
+                if (timeInterval == "11 - 12pm")
+                {
+                    Reserve(timeInterval, "Court 3");
+                }
+                else 
+                {
+                    Reserve(timeInterval, court);
+                }
+            }
         }
     }
 
