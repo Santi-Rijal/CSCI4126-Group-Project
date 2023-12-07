@@ -132,8 +132,11 @@ public class Account : MonoBehaviour {
     }
 
     public void DeleteBooking(string type, object item) {
+        Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
+        message.Add("Remove");
 
-        if (type.Equals("activity")) {
+        if (type.Equals("activity")) 
+        {
             var aItem = (ActivitiesItem) item;
 
             var list = GetList(aItem.id);
@@ -145,8 +148,13 @@ public class Account : MonoBehaviour {
             if (gameObject != null) {
                 Destroy(gameObject.gameObject);
             }
+
+            message.Add(aItem.GetTime());
+            message.Add(aItem.GetName());
         }
-        else {
+
+        else 
+        {
             var cItem = (CourtItems) item;
 
             var list = GetList(cItem.id);
@@ -159,12 +167,10 @@ public class Account : MonoBehaviour {
                 Destroy(gameObject.gameObject);
             }
             
-            Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
-            message.Add("Remove");
             message.Add(cItem.GetTime());
             message.Add(cItem.GetName());
-            NetworkManager.Singleton.Client.Send(message);
         }
+        NetworkManager.Singleton.Client.Send(message);
     }
 
     private List<object> GetList(int id) {

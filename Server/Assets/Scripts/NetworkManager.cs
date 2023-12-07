@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using Riptide;
@@ -58,7 +59,13 @@ public class NetworkManager : MonoBehaviour {
         }
         else if (type.Equals("Remove")) 
         {
-            RemoveReserve(time, court);
+            if (time.Equals("9 - 1pm"))
+            {
+                DecrementRegisteredCount(_tennisLesson, time, court);
+            }
+            else {
+                RemoveReservationForTimeInterval(time, court);
+            }
         }
         else if (type.Equals("Activity")) 
         {
@@ -86,6 +93,53 @@ public class NetworkManager : MonoBehaviour {
                 int totalCount = int.Parse(parts[1]);
 
                 currentCount++; // Increment the count
+
+                // Update the text
+                textComponent.text = currentCount.ToString() + "/" + totalCount.ToString() + " Registered";
+            }
+            else
+            {
+                Debug.LogError("Text component not found on Registered object!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Registered child not found!");
+        }
+    }
+
+    private void DecrementRegisteredCount(GameObject parentGameObject, string time, string court)
+    {
+        Transform registeredTransform = parentGameObject.transform.Find("Registered");
+        if (registeredTransform != null)
+        {
+            Text textComponent = registeredTransform.GetComponent<Text>();
+            if (textComponent != null)
+            {
+                string currentText = textComponent.text;
+
+                // Assuming the format is always "number/total Registered"
+                string[] parts = currentText.Split(' ')[0].Split('/');
+                int currentCount = int.Parse(parts[0]);
+                int totalCount = int.Parse(parts[1]);
+
+                currentCount--; // Decrement the count
+
+                if (currentCount <= 0)
+                {
+                    currentCount = 0;
+                    foreach (string interval in GetTimeIntervals(time, court)) {
+                        Debug.Log(interval);
+                        if(interval == "11 - 12pm")
+                        {
+                            RemoveReservationForTimeInterval(interval, "Court 3");
+                        }
+                        else
+                        {
+                            RemoveReservationForTimeInterval(interval, "Court 2");
+                        }
+                    }
+                }
 
                 // Update the text
                 textComponent.text = currentCount.ToString() + "/" + totalCount.ToString() + " Registered";
@@ -164,9 +218,8 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    private void RemoveReserve(string time, string court) {
+    private void RemoveReservationForTimeInterval(string time, string court) {
         var timeGameObject = _reservedTablesGameObject.transform.Find(time);
-
         if (timeGameObject != null) {
             var courtGameObject = timeGameObject.Find(court);
 
@@ -178,6 +231,42 @@ public class NetworkManager : MonoBehaviour {
                 textComponent.text = "";
             }
         }
+    }
+
+    private IEnumerable<string> GetTimeIntervals(string time, string court)
+    {
+        List<string> intervals = new List<string>();
+        
+        int[] times = new int[] { 9, 10, 11, 12, 1, 2, 3, 4, 5 };
+
+        string[] splitTime = time.Split('-');
+
+        string firstTime = splitTime[0].Trim();
+        string secondTime = splitTime[1].Trim();
+
+        firstTime = Regex.Match(firstTime, @"\d+").Value;
+        secondTime = Regex.Match(secondTime, @"\d+").Value;
+
+        string amPm = Regex.Match(splitTime[1], "[AaPp][Mm]").Value;
+
+        int firstTimeInt = int.Parse(firstTime);
+        int secondTimeInt = int.Parse(secondTime);
+
+        Debug.Log("First Time: " + firstTimeInt);
+        Debug.Log("Second Time: " + secondTimeInt + amPm);
+
+        int first = Array.IndexOf(times, firstTimeInt);
+        int second = Array.IndexOf(times, secondTimeInt);
+
+        for (int i = first; i < second; i++)
+        {
+            Debug.Log(court);
+            string amOrPm = (i < 2) ? "am" : "pm";
+            string timeInterval = times[i].ToString() + " - " + times[i + 1].ToString() + amOrPm;
+            intervals.Add(timeInterval);
+        }
+
+        return intervals;
     }
     
     private void FixedUpdate() {
