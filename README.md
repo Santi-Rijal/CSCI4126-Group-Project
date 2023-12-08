@@ -7,7 +7,7 @@
 
 **Last updated: December 8, 2023.**
 
-## Deployment and User Guide for GameSetMatch:
+## Deployment and User Guide:
 
 ### Getting Started with GameSetMatch
 
