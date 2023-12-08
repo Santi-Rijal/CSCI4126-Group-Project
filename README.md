@@ -79,14 +79,14 @@ With the server application running, you can start using the app:
 ### App Icon
 - Sperry, B. (n.d.). Ionicons pack. Retrieved from [GitHub - Ionicons](https://github.com/ionic-team/ionicons)
 
+### Weather Animations
+- Schrode, J. (n.d.). [Dribbble - JasonSchrode](https://dribbble.com/JasonSchrode)
+
 ### Font
 - [Google Fonts - Roboto](https://fonts.google.com/specimen/Roboto)
 
 ### Weather API
 - [Weatherstack API](https://weatherstack.com)
-
-### Weather Animations
-- Schrode, J. (n.d.). [Dribbble - JasonSchrode](https://dribbble.com/JasonSchrode)
 
 ### Wind Animation
 - [Behance - Animated Weather Icons](https://www.behance.net/gallery/16071075/Animated-Weather-Icons)
