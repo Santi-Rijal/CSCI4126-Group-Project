@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine;
 using Riptide;
 
+/// <summary>
+/// Manages account information and displays bookings in the UI.
+/// </summary>
 public class Account : MonoBehaviour {
 
     private Bookings _bookings;
@@ -16,6 +19,9 @@ public class Account : MonoBehaviour {
     private int _currentY = 0;
     private int _prevSize;
     
+    /// <summary>
+    /// Initializes bookings and displays them in the UI.
+    /// </summary>
     private void Awake() {
         var booking = GameObject.Find("Bookings");
         _bookings = booking.GetComponent<Bookings>();
@@ -23,16 +29,20 @@ public class Account : MonoBehaviour {
         DisplayBookings();
     }
 
+    /// <summary>
+    /// Updates the booking display if there are changes in bookings.
+    /// </summary>
     private void Update() {
-
         if (_prevSize != _bookings.bookings.Count) {
             DisplayBookings();
             _prevSize = _bookings.bookings.Count;
         }
     }
 
+    /// <summary>
+    /// Displays the bookings in the UI.
+    /// </summary>
     private void DisplayBookings() {
-        
         _currentY = 0;
         
         foreach (var booking in _bookings.bookings) {
@@ -108,6 +118,12 @@ public class Account : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Positions a UI item within the container.
+    /// </summary>
+    /// <param name="rect">The RectTransform of the item to position.</param>
+    /// <param name="siblings">The number of siblings the item has within its parent container.</param>
+    /// <param name="date">Whether the item represents a date or not.</param>
     private void PositionItem(RectTransform rect, int siblings, bool date) {
         var currentPosition = rect.anchoredPosition;
 
@@ -131,12 +147,16 @@ public class Account : MonoBehaviour {
         rect.anchoredPosition = currentPosition;
     }
 
+    /// <summary>
+    /// Deletes a booking and updates the UI and server accordingly.
+    /// </summary>
+    /// <param name="type">The type of booking to delete ("activity" or "court").</param>
+    /// <param name="item">The booking item to delete.</param>
     public void DeleteBooking(string type, object item) {
         Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
         message.Add("Remove");
 
-        if (type.Equals("activity")) 
-        {
+        if (type.Equals("activity")) {
             var aItem = (ActivitiesItem) item;
 
             var list = GetList(aItem.id);
@@ -152,9 +172,7 @@ public class Account : MonoBehaviour {
             message.Add(aItem.GetTime());
             message.Add(aItem.GetName());
         }
-
-        else 
-        {
+        else {
             var cItem = (CourtItems) item;
 
             var list = GetList(cItem.id);
@@ -173,6 +191,11 @@ public class Account : MonoBehaviour {
         NetworkManager.Singleton.Client.Send(message);
     }
 
+    /// <summary>
+    /// Retrieves a list of booking details based on the provided ID.
+    /// </summary>
+    /// <param name="id">The ID of the booking to find.</param>
+    /// <returns>A list containing booking details, or null if not found.</returns>
     private List<object> GetList(int id) {
         foreach (var item in _bookings.bookings) {
             if (item[3].Equals(id)) return item;
@@ -181,6 +204,9 @@ public class Account : MonoBehaviour {
         return null;
     }
 
+    /// <summary>
+    /// Clears and reloads the booking display.
+    /// </summary>
     private void Reload() {
         foreach (Transform item in container) {
             Destroy(item.gameObject);

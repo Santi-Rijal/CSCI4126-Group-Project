@@ -3,21 +3,24 @@ using Riptide;
 using Riptide.Utils;
 using UnityEngine;
 
-/**
- * A enum client to server id.
- */
+/// <summary>
+/// Enumeration for client to server message IDs.
+/// </summary>
 public enum ClientToServerId : ushort {
     name = 1,
 }
 
-/**
- * Class to manage the connection on the client side.
- */
+/// <summary>
+/// Manages the network connection on the client side.
+/// </summary>
 public class NetworkManager : MonoBehaviour {
 
-    private static NetworkManager _singleton;   // Singleton of this class.
+    private static NetworkManager _singleton;   // Singleton instance of this class.
 
-    // Create a new singleton if it already doesn't exists else destroy it.
+    /// <summary>
+    /// Gets or privately sets the singleton instance of <see cref="NetworkManager"/>.
+    /// Creates a new singleton if it doesn't exist, else destroys the duplicate.
+    /// </summary>
     public static NetworkManager Singleton {
         get => _singleton;
 
@@ -35,48 +38,68 @@ public class NetworkManager : MonoBehaviour {
     public Client Client { get; private set; }  // Client get and set methods.
 
     [SerializeField] private ushort port = 7777;   // Port to run on.
-    //[SerializeField] private string ip; // Ip to connect on.
 
-    // Set singleton.
+    /// <summary>
+    /// Initializes the singleton instance.
+    /// </summary>
     private void Awake() {
         _singleton = this;
     }
 
+    /// <summary>
+    /// Starts the network manager, initializes logs, and connects the client.
+    /// </summary>
     private void Start() {
-        // Initialize riptide logs.
+        // Initialize Riptide logs.
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
 
         Client = new Client();  // Create a new client.
         Connect();
 
-        Client.ConnectionFailed += FailedToConnect; // Subscribe to connect to failed event.
+        // Subscribe to connection events.
+        Client.ConnectionFailed += FailedToConnect; // Subscribe to connection failed event.
         Client.Disconnected += DidDisconnect;   // Subscribe to disconnected event.
     }
 
+    /// <summary>
+    /// Updates the client at a fixed interval.
+    /// </summary>
     private void FixedUpdate() {
-        Client.Update();    // Call the client's update method at a fixed update.
+        Client.Update();    // Call the client's update method at a fixed interval.
     }
 
-    // Method to disconnect client when application quits.
+    /// <summary>
+    /// Disconnects the client when the application quits.
+    /// </summary>
     private void OnApplicationQuit() {
         Client.Disconnect();
     }
 
-    // Method to connect client.
+    /// <summary>
+    /// Connects the client to the server using the specified IP and port.
+    /// </summary>
     public void Connect() {
-        Client.Connect($"{LoadScene.IP}:{port}"); // Call the connect method of client with the ip and port.
+        Client.Connect($"{LoadScene.IP}:{port}"); // Call the connect method of the client with the IP and port.
     }
 
-    // A subscription method for failed to connect event.
+    /// <summary>
+    /// Handles the event when connection to the server fails.
+    /// </summary>
+    /// <param name="sender">The sender of the event.</param>
+    /// <param name="e">Event arguments.</param>
     private void FailedToConnect(object sender, EventArgs e) {
-        // Send failed to connect message to server.
+        // Handle failed to connect event.
         Message message = Message.Create(MessageSendMode.Reliable, ClientToServerId.name);
         message.Add("Failed to connect");
         Client.Send(message);
     }
     
-    // A subscription method for disconnect event.
+    /// <summary>
+    /// Handles the event when the client disconnects from the server.
+    /// </summary>
+    /// <param name="sender">The sender of the event.</param>
+    /// <param name="e">Event arguments.</param>
     private void DidDisconnect(object sender, EventArgs e) {
-       
+        // Disconnection event.
     }
 }

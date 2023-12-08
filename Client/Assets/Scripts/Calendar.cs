@@ -4,7 +4,9 @@ using TMPro;
 using UnityEngine;
 using Riptide;
 
-
+/// <summary>
+/// Manages the calendar display and functionality within the application.
+/// </summary>
 public class Calendar : MonoBehaviour {
 
     [SerializeField] private Dates currentlySelected;
@@ -18,6 +20,9 @@ public class Calendar : MonoBehaviour {
     private string _selectedDate;
     private string _day;
     
+    /// <summary>
+    /// Initializes the calendar with the current date and updates the display.
+    /// </summary>
     private void Awake() {
         
         var currentDate = DateTime.Now;
@@ -35,6 +40,9 @@ public class Calendar : MonoBehaviour {
         Display(tabs.GetActiveCanvasName());
     }
     
+    /// <summary>
+    /// Updates the calendar display and handles removed bookings.
+    /// </summary>
     private void Update() {
         Display(tabs.GetActiveCanvasName());
 
@@ -48,6 +56,10 @@ public class Calendar : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Loads and displays the deleted bookings from the account.
+    /// </summary>
+    /// <param name="list">The list of deleted bookings.</param>
     private void LoadDeletedFromAccount(List<List<object>> list) {
 
         foreach (var booking in list) {
@@ -74,6 +86,10 @@ public class Calendar : MonoBehaviour {
         bookingsObject.bookingsRemoved = new List<List<object>>();
     }
 
+    /// <summary>
+    /// Changes the currently selected date in the calendar.
+    /// </summary>
+    /// <param name="date">The new date to select.</param>
     public void ChangeDate(Dates date) {
         if (currentlySelected != null) {
             currentlySelected.ReturnToDefault();
@@ -86,15 +102,27 @@ public class Calendar : MonoBehaviour {
         Display(tabs.GetActiveCanvasName());
     }
 
+    /// <summary>
+    /// Gets the currently selected date in string format.
+    /// </summary>
+    /// <returns>The currently selected date as a string.</returns>
     public string GetDate() {
         var date = _currentMonth + " " + _selectedDate;
         return date;
     }
 
+    /// <summary>
+    /// Gets the currently selected <see cref="Dates"/> object.
+    /// </summary>
+    /// <returns>The currently selected <see cref="Dates"/> object.</returns>
     public Dates GetDay() {
         return currentlySelected;
     }
 
+    /// <summary>
+    /// Displays the appropriate items based on the selected date and tab.
+    /// </summary>
+    /// <param name="itemType">The type of item to display ("Courts" or "Activities").</param>
     private void Display(string itemType) {
         var courtItems = currentlySelected.CourtItems;
         var activityItems = currentlySelected.ActivitiesItems;
@@ -127,10 +155,18 @@ public class Calendar : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Removes a specified court item from the current date.
+    /// </summary>
+    /// <param name="items">The court item to remove.</param>
     public void RemoveCourtItem(CourtItems items) {
         currentlySelected.RemoveCourtItem(items);
     }
     
+    /// <summary>
+    /// Removes a specified activity item from the current date.
+    /// </summary>
+    /// <param name="items">The activity item to remove.</param>
     public void RemoveActivityItem(ActivitiesItem items) {
         currentlySelected.RemoveActivityItem(items);
     }

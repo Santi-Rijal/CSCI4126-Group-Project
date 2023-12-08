@@ -7,48 +7,63 @@ using Riptide.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-/**
- * Class to manage the connection on the server side.
- */
-public class NetworkManager : MonoBehaviour {
-
+/// <summary>
+/// Manages the network connection and operations on the server side.
+/// </summary>
+public class NetworkManager : MonoBehaviour 
+{
     public Server Server { get; private set; }
 
     [SerializeField] private ushort port;   // Port for the server.
-    [SerializeField] private ushort maxClientCount; // Num of clients allowed.
+    [SerializeField] private ushort maxClientCount; // Maximum number of clients allowed.
 
     private GameObject _reservedTablesGameObject;
     private GameObject _tennisLesson;
 
-    private void Awake() {
+    /// <summary>
+    /// Initializes server-side components and finds required game objects.
+    /// </summary>
+    private void Awake() 
+    {
         _reservedTablesGameObject = GameObject.Find("ReservedTable");
         _tennisLesson = GameObject.Find("Event (3)");
     }
 
-    private void Start() {
-        // Initialize riptide logs.
+    /// <summary>
+    /// Starts the server and subscribes to necessary events.
+    /// </summary>
+    private void Start() 
+    {
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
-
-        Server = new Server();  // Create a new server.
-        Server.Start(port, maxClientCount); // Start the server on port with max client count.
-
-        Server.MessageReceived += ServerOnMessageReceived;  // Subscribe to message received event.
-        Server.ClientDisconnected += ServerOnClientDisconnected;    // Subscribe to client disconnect event.
-        Server.ClientConnected += ServerOnClientConnected;  // Subscribe to client connect event.
+        Server = new Server();
+        Server.Start(port, maxClientCount);
+        Server.MessageReceived += ServerOnMessageReceived;
+        Server.ClientDisconnected += ServerOnClientDisconnected;
+        Server.ClientConnected += ServerOnClientConnected;
     }
 
     // A subscription method for client connected event.
-    private void ServerOnClientConnected(object sender, ServerConnectedEventArgs e) {
-        print("Connected");
+    /// <summary>
+    /// Handles the event when a client connects to the server.
+    /// </summary>
+    private void ServerOnClientConnected(object sender, ServerConnectedEventArgs e)
+    {
+        Debug.Log("Client connected");
     }
 
-    // A subscription method for client disconnected event.
-    private void ServerOnClientDisconnected(object sender, ServerDisconnectedEventArgs e) {
-        print("Disconnected");
+    /// <summary>
+    /// Handles the event when a client disconnects from the server.
+    /// </summary>
+    private void ServerOnClientDisconnected(object sender, ServerDisconnectedEventArgs e)
+    {
+        Debug.Log("Client disconnected");
     }
 
-    // A subscription method for message received event.
-    private void ServerOnMessageReceived(object sender, MessageReceivedEventArgs e) {
+    /// <summary>
+    /// Processes messages received from clients.
+    /// </summary>
+    private void ServerOnMessageReceived(object sender, MessageReceivedEventArgs e) 
+    {
         var type = e.Message.GetString();    
         var time = e.Message.GetString();
         var court = e.Message.GetString();
@@ -77,6 +92,9 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Increments the registered participant count for an event.
+    /// </summary>
     private void IncrementRegisteredCount(GameObject parentGameObject)
     {
         Transform registeredTransform = parentGameObject.transform.Find("Registered");
@@ -108,6 +126,9 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Decrements the registered participant count for an event.
+    /// </summary>
     private void DecrementRegisteredCount(GameObject parentGameObject, string time, string court)
     {
         Transform registeredTransform = parentGameObject.transform.Find("Registered");
@@ -155,6 +176,9 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles reservation actions based on the received message.
+    /// </summary>
     private void HandleReserve(string time, string court)
     {
         int[] times = new int[] { 9, 10, 11, 12, 1, 2, 3, 4, 5 };
@@ -202,7 +226,11 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    private void Reserve(string time, string court) {
+    /// <summary>
+    /// Handles reservation actions based on the received message.
+    /// </summary>
+    private void Reserve(string time, string court) 
+    {
         var timeGameObject = _reservedTablesGameObject.transform.Find(time);
 
         if (timeGameObject != null) {
@@ -218,7 +246,11 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    private void RemoveReservationForTimeInterval(string time, string court) {
+    /// <summary>
+    /// Removes a reservation for a specific time interval and court.
+    /// </summary>
+    private void RemoveReservationForTimeInterval(string time, string court) 
+    {
         var timeGameObject = _reservedTablesGameObject.transform.Find(time);
         if (timeGameObject != null) {
             var courtGameObject = timeGameObject.Find(court);
@@ -233,6 +265,9 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Generates a list of time intervals based on the provided time and court.
+    /// </summary>
     private IEnumerable<string> GetTimeIntervals(string time, string court)
     {
         List<string> intervals = new List<string>();
@@ -269,11 +304,19 @@ public class NetworkManager : MonoBehaviour {
         return intervals;
     }
     
-    private void FixedUpdate() {
-        Server.Update();    // Call the server's update method at a fixed update.
+    /// <summary>
+    /// Updates the server at a fixed interval.
+    /// </summary>
+    private void FixedUpdate() 
+    {
+        Server.Update();
     }
 
-    private void OnApplicationQuit() {
-        Server.Stop();  // Stop the server on application quit.
+    /// <summary>
+    /// Stops the server when the application quits.
+    /// </summary>
+    private void OnApplicationQuit() 
+    {
+        Server.Stop();
     }
 }

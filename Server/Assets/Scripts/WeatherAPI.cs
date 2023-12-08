@@ -3,21 +3,27 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Fetches and displays weather data from an API and manages weather animations.
+/// </summary>
 public class WeatherAPIScript : MonoBehaviour
 {
     public string city = "Halifax, Canada";
     private string apiKey = "bd08346cc82a086fd4a9861b555d1b89";
     private string apiUrl = "http://api.weatherstack.com/current";
     public UnityEngine.UI.Text temperatureText;
-    public UnityEngine.UI.Text windSpeedText; // UI Text for wind speed
+    public UnityEngine.UI.Text windSpeedText;
 
     public GameObject hailObject, rainyObject, snowyObject, sunnyCloudsObject, thunderObject;
     private Dictionary<string, GameObject> weatherAnimations;
 
-    public float updateInterval = 1800f; // Time in seconds for each weather update (e.g., 1800 seconds = 30 minutes)
+    public float updateInterval = 300f; // Time in seconds for each weather update (e.g., 1800 seconds = 30 minutes)
 
     private float timer;
 
+    /// <summary>
+    /// Initializes weather animations and starts the first data fetch.
+    /// </summary>
     void Start()
     {
         InitializeWeatherAnimations();
@@ -25,6 +31,9 @@ public class WeatherAPIScript : MonoBehaviour
         timer = updateInterval;
     }
 
+    /// <summary>
+    /// Periodically updates the weather data based on the specified interval.
+    /// </summary>
     void Update()
     {
         // Update timer
@@ -36,6 +45,9 @@ public class WeatherAPIScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes the dictionary of weather animations and deactivates all animations.
+    /// </summary>
     void InitializeWeatherAnimations()
     {
         weatherAnimations = new Dictionary<string, GameObject>
@@ -50,6 +62,9 @@ public class WeatherAPIScript : MonoBehaviour
         DeactivateAllAnimations();
     }
 
+    /// <summary>
+    /// Coroutine to fetch weather data from the API.
+    /// </summary>
     IEnumerator GetWeatherData()
     {
         string fullUrl = $"{apiUrl}?access_key={apiKey}&query={city}";
@@ -75,6 +90,10 @@ public class WeatherAPIScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activates the appropriate weather animation based on the current weather description.
+    /// </summary>
+    /// <param name="weatherDescription">The current weather description.</param>
     void TriggerWeatherAnimation(string weatherDescription)
     {
         Debug.Log("Weather Description: " + weatherDescription);
@@ -94,7 +113,10 @@ public class WeatherAPIScript : MonoBehaviour
         else if (weatherDescription.Contains("Thunderstorm"))
             weatherAnimations["Thunderstorm"].SetActive(true);
     }
-
+    
+    /// <summary>
+    /// Deactivates all weather animations.
+    /// </summary>
     void DeactivateAllAnimations()
     {
         foreach (var anim in weatherAnimations.Values)
