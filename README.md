@@ -7,7 +7,7 @@
 
 **Last updated: December 8, 2023.**
 
-## Deployment and User Guide for GameSetMatch: Interactive Sports Booking System
+## Deployment and User Guide for GameSetMatch:
 
 ### Getting Started with GameSetMatch
 
